@@ -6,7 +6,7 @@ CREATE TABLE book(
     price       NUMBER
 );
 
---coustomer 테이블 생성
+--customer 테이블 생성
 CREATE TABLE customer(
     custid  NUMBER PRIMARY KEY,
     name    VARCHAR2(40),
@@ -80,6 +80,15 @@ SELECT DISTINCT publisher FROM book;
 
 --====================================================
 -- 조건절 WHERE 사용
+
+
+-- 책 번호가 5번인 도서를 검색하세요.
+SELECT * FROM book WHERE bookid = 5;
+
+-- 책 번호가 5번이 아닌 도서를 검색하세요.
+SELECT * FROM book WHERE bookid <> 5;
+
+
 -- 가격이 20,000원 미만인 도서를 검색
 SELECT *
 FROM book
@@ -87,10 +96,9 @@ WHERE price < 20000;
 
 --====================================================
 -- 범위 BETWEEN ~ AND 사용, 논리연산자도 사용
+
 -- 범위 : 가격이 10,000원 이상 20,000원 이하인 도서 검색
-SELECT *
-FROM book
-WHERE price BETWEEN 10000 AND 20000;
+SELECT * FROM book WHERE price BETWEEN 10000 AND 20000;
 
 SELECT *
 FROM book
@@ -99,9 +107,7 @@ WHERE price >= 10000 AND price <= 20000;
 --====================================================
 -- IN(A, B) : A 또는 B
 -- 출판사가 '굿스포츠' 혹은 '대한미디어' 인 도서를 검색하세요.
-SELECT *
-FROM book
-WHERE publisher IN('굿스포츠' , '대한미디어');
+SELECT * FROM book WHERE publisher IN('굿스포츠' , '대한미디어');
 
 SELECT *
 FROM book
@@ -118,14 +124,10 @@ WHERE publisher NOT IN('굿스포츠' , '대한미디어');
 -- LIKE 연산자 : %기호 사용
 -- 시작하는 문장 : %단어, 끝나는 문장: 단어% 포함: %단어%
 -- '축구의 역사' 를 출간한 출판사를 검색하세요.
-SELECT *
-FROM book
-WHERE bookname LIKE '축구의 역사';
+SELECT * FROM book WHERE bookname LIKE '축구의 역사';
 
 -- 도서 이름에 '축구'가 포함 된 출판사를 검색하세요
-SELECT bookname, publisher
-FROM book
-WHERE bookname LIKE '%축구%';
+SELECT bookname, publisher FROM book WHERE bookname LIKE '%축구%';
 
 --====================================================
 -- '축구'에 관한 도서 중 가격이 20,000원 이상인 도서 검색
@@ -137,9 +139,7 @@ WHERE bookname LIKE '%축구%' AND price >= 20000;
 --====================================================
 -- ORDER BY 
 -- 도서를 이름순으로 정렬하세요.
-SELECT *
-FROM book
-ORDER BY bookname;
+SELECT * FROM book ORDER BY bookname;
 
 -- 도서를 가격순으로 검색하고, 가격이 같으면 이름순으로 검색하세요
 SELECT *
@@ -149,18 +149,9 @@ ORDER BY price, bookname;
 --====================================================
 -- ORDER BY 객체 DESC(내림차순) , ORDER BY 객체 ACS(오름차순)
 -- 도서를 가격순으로 검색하고, 가격이 같으면 이름순으로 검색하세요
-SELECT *
-FROM book
-ORDER BY price DESC, bookname ASC;
+SELECT * FROM book ORDER BY price DESC, bookname ASC;
 
 -- 도서를 가격의 내림차순으로 검색하고, 가격이 같으면 출판사를 오름차순으로 검색
 SELECT *
 FROM book
 ORDER BY price DESC, publisher ASC;
-
-
-
-
-
-
-
